@@ -1,7 +1,7 @@
-import { Container, LazyAvatar} from "@adminui-dev/antd-layout";
+import { Container } from "@adminui-dev/antd-layout";
 import {  Button, Flex,  Space, Table, Tag, Grid, theme, Input, Tooltip,App, Popconfirm, Divider} from 'antd';
 import  type { TableColumnsType, TableProps,TableColumnType,PopconfirmProps } from 'antd';
-import type { Order, OrderStatus } from "@/pages/typings";
+import type { Order } from "@/pages/typings";
 import { Search,Download,Printer,Trash, PackageCheck,Plus,Check,SquarePen,Binoculars,WalletCards } from "lucide-react";
 import { useRef, useState } from "react";
 import { useIntl } from "react-intl";
