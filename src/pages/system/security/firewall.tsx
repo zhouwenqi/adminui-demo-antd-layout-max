@@ -2,7 +2,7 @@ import { Container} from "@adminui-dev/antd-layout";
 import {  Button, Flex,  Space, Table, Tag, Grid, theme, Input, Tooltip,App} from 'antd';
 import  type { TableColumnsType, TableProps,TableColumnType } from 'antd';
 import type { Firewall } from "@/pages/typings";
-import { Search,Download,Printer,Trash, Upload,Plus,SquarePen,Binoculars,FingerprintPattern } from "lucide-react";
+import { Search,Download,Printer,Trash, Upload,Plus,SquarePen,Binoculars } from "lucide-react";
 import { useRef, useState } from "react";
 import { useIntl } from "react-intl";
 import { printElement } from "@/utils/printUtil";
@@ -50,7 +50,7 @@ export default function(){
     }
     
     const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Firewall> => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+    filterDropdown: ({ selectedKeys, close }) => (
       <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
         <Input
           placeholder={`${intl.formatMessage({id:"global.search"})} ${dataIndex}`}
@@ -102,7 +102,7 @@ export default function(){
             dataIndex: 'ip',
             filterSearch: true,
             sorter:true,
-            render:(value,record,index)=>{
+            render:(value,record)=>{
                 let sip = value[0] || ""
                 if(value.length>1){
                     sip += " - " + value[value.length-1]
@@ -118,7 +118,7 @@ export default function(){
             dataIndex: 'description',
             filterSearch: true,
             sorter:true,
-            render:(value,record,index)=>{
+            render:(value)=>{
                 return(
                     <Tag>{value}</Tag>
                 )
@@ -131,7 +131,7 @@ export default function(){
             width:"160px",
             sorter:true,
             filters:filterYesOrNo,
-            render(value, record, index) {
+            render(value) {
                 return(
                     <Tag color={value ? "red" : "green" }>{yesOrNo.find(item=>item.value == value)?.label}</Tag>
                 )
@@ -149,7 +149,8 @@ export default function(){
             dataIndex: 'id',
             width:"160px",
             align:"right",
-            render(value,record,index){
+            render(value,record){
+                console.log(value)
                 let buttons=[
                     <Tooltip key="details-btn" title={intl.formatMessage({id:"global.details"})}>
                         <Button type="text" onClick={()=>{showDetails(record)}} icon={<Binoculars size={14} />} />

@@ -91,9 +91,9 @@ export default function(){
             title: 'ID',
             dataIndex: 'avatar',
             width:"60px",
-            render(value, record, index) {
+            render(value, record) {
                 return(
-                    <LazyAvatar key={index} size={"small"} src={value} />
+                    <LazyAvatar key={record.id} size={"small"} src={value} />
                 )
             },
         },  
@@ -145,6 +145,7 @@ export default function(){
     }
 
     const onConfirmClean:PopconfirmProps["onConfirm"]=(e)=>{
+        console.log(e)
         message.success(intl.formatMessage({id:"notifications.clean.confirm.success"}))        
     }
     const btnDisable = selectedRowKeys.length <= 0

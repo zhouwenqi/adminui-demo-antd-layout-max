@@ -96,7 +96,8 @@ function AreaChartPanel(){
         setEndTime(Date.now() + 60 * 5 * 1000)
     }
 
-    const onChangeHandler=(option:any,total:number,overly:boolean)=>{      
+    const onChangeHandler=(option:any,total:number,overly:boolean)=>{    
+      console.log(total)  
       if(!overly && appChart.current){
         const ops = {grid:{left:intl.locale=='en-US'? '80px' : '40px'},...option}
         appChart.current.setOption(ops)

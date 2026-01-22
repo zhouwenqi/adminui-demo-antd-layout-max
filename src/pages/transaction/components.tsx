@@ -394,10 +394,12 @@ export function useOrderModel(){
         setOpenPayment(true)
     }
     const deleteOrder=(order:Order)=>{
+        console.log(order)
         message.success(intl.formatMessage({id:"order.confirm.create.success"}))        
     }
 
-    const verifyOrder=(order:Order)=>{
+    const verifyOrder=(order:Order)=>{        
+        console.log(order)
         message.info(intl.formatMessage({id:"order.confirm.verify.completed"}))
     }
     const detailsDrawer = <OrderDetailsDrawer zIndex={1} order={detailsRecord} size={500} open={openDetails} onClose={()=>{setOpenDetails(false)}} onEdit={showEditDrawer} onDelete={deleteOrder} onPayment={showPaymentModal} onVerify={verifyOrder} />    

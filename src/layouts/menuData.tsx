@@ -1,6 +1,6 @@
 import type { MenuData }  from "@adminui-dev/antd-layout"
 import {Badge} from "antd"
-import {UsersRound,Contact,UserLock,Shield,BrickWallShield,FingerprintPattern,HeartHandshake,Gauge,MonitorCheck,Bell,ChartNoAxesCombined,TableProperties,BadgeDollarSign,Globe,ClipboardClock,ScanFace,NotebookPen,Scale,SquareChartGantt,Box,Cog,MonitorCog,BellRing,Building2} from "lucide-react"
+import {UsersRound,Contact,UserLock,Shield,BrickWallShield,FingerprintPattern,HeartHandshake,Gauge,MonitorCheck,Bell,ChartNoAxesCombined,TableProperties,BadgeDollarSign,Globe,ClipboardClock,ScanFace,NotebookPen,Scale,SquareChartGantt,Box,Cog,MonitorCog,Building2} from "lucide-react"
 /**
  * Menu data
  * A menu corresponds to a route, and the root menu is not displayed, but it must correspond to a layout route because an item may have a layout.

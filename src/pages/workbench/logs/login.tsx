@@ -1,9 +1,9 @@
 import { Container, LazyAvatar} from "@adminui-dev/antd-layout";
 import {  Button, Flex,  Space, Table, Tag, Grid, theme, Input, Tooltip,App, Segmented } from 'antd';
-import type { TableColumnsType, TableProps,TableColumnType,InputRef } from 'antd';
+import type { TableColumnsType,TableColumnType } from 'antd';
 import type { LoginLog } from "@/pages/typings";
-import { Search,Download,Printer,ChartPie } from "lucide-react";
-import { useRef, useState } from "react";
+import { Search,Download,Printer } from "lucide-react";
+import { useRef } from "react";
 import { useIntl } from "react-intl";
 import { printElement } from "@/utils/printUtil";
 
@@ -105,7 +105,7 @@ export default function(){
     ]
     
     const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<LoginLog> => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+    filterDropdown: ({ selectedKeys, close }) => (
       <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
         <Input
           placeholder={`${intl.formatMessage({id:"global.search"})} ${dataIndex}`}
@@ -151,9 +151,9 @@ export default function(){
             title: 'ID',
             dataIndex: 'avatar',
             width:"60px",
-            render(value, record, index) {
+            render(value, record) {
                 return(
-                    <LazyAvatar key={index} size={"small"} src={value} />
+                    <LazyAvatar key={record.id} size={"small"} src={value} />
                 )
             },
         },  
@@ -181,7 +181,7 @@ export default function(){
             dataIndex: 'status',
             width:"140px",
             filters:statusOptions,
-            render(value, record, index) {
+            render(value) {
                 return(
                     <Tag color={value=="SUCCESS" ? "success" : "error"}>{statusOptions.find(item=>item.value==value)?.text}</Tag>
                 )
@@ -194,7 +194,7 @@ export default function(){
             dataIndex: 'device',
             width:"140px",
             filters:filterDeviceOptions,
-            render(value, record, index) {
+            render(value) {
                 return(
                     <Tag>{value}</Tag>
                 )
@@ -206,7 +206,7 @@ export default function(){
             dataIndex: 'os',
             width:"140px",
             filters:filterOsOptions,
-            render(value, record, index) {
+            render(value) {
                 return(
                     <Tag>{value}</Tag>
                 )

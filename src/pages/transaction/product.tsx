@@ -55,7 +55,7 @@ export default function(){
     }
     
     const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Product> => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+    filterDropdown: ({ selectedKeys, close }) => (
       <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
         <Input
           placeholder={`${intl.formatMessage({id:"global.search"})} ${dataIndex}`}
@@ -102,7 +102,7 @@ export default function(){
             dataIndex: 'image',
             filterSearch: true,
             sorter:true,
-            render:(value,record,index)=>{
+            render:(value,record)=>{
                 return(
                     <a><LazyImage style={{width:"60px"}} src={value} alt={record.name} /></a>
                 )
@@ -113,7 +113,7 @@ export default function(){
             dataIndex: 'sn',
             filterSearch: true,
             sorter:true,
-            render:(value,record,index)=>{
+            render:(value)=>{
                 return(
                     <a>{value}</a>
                 )
@@ -141,7 +141,7 @@ export default function(){
             dataIndex: 'categories',
             width:"160px",
             filters:filterProductCaties,
-            render(value, record, index) {
+            render(value) {
                 return(
                     <Tag>{productCaties.find(item=>item.value == value)?.label}</Tag>
                 )
@@ -158,7 +158,7 @@ export default function(){
             dataIndex: 'arrive',        
             sorter:true,
             filters:filterYesOrNo,
-            render(value, record, index) {
+            render(value) {
                 return(
                     <Tag color={value ? "green" : "default"}>{yesOrNo.find(item=>item.value == value)?.label}</Tag>
                 )
@@ -169,7 +169,7 @@ export default function(){
             dataIndex: 'disabled',          
             sorter:true,
             filters:filterYesOrNo,
-            render(value, record, index) {
+            render(value) {
                 return(
                     <Tag color={value ? "green" : "default"}>{yesOrNo.find(item=>item.value == value)?.label}</Tag>
                 )
@@ -186,7 +186,8 @@ export default function(){
             dataIndex: 'id',
             width:"160px",
             align:"right",
-            render(value,record,index){
+            render(value){
+                console.log(value)
                 let buttons=[<Tooltip key="details-btn" title={intl.formatMessage({id:"order.drawer.details.title"})}>
                             <Button type="text" icon={<Binoculars size={14} />} />
                         </Tooltip>,<Tooltip key="edit-btn" title={intl.formatMessage({id:"order.button.edit"})}>

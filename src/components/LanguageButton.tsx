@@ -1,7 +1,6 @@
 import { Button, Flex, Popover,theme } from "antd"
 import { useConfigAction, useConfigState } from "@adminui-dev/antd-layout"
 import { Languages } from "lucide-react"
-import { useIntl } from "react-intl"
 import { useState } from "react"
 const {useToken} = theme
 
@@ -15,9 +14,7 @@ function LanguageButton(){
     const {locale,languages} = useConfigState()
     const {setLocale} = useConfigAction()
     const [open,setOpen] = useState<boolean>(false)
-    const intl = useIntl()
     const {token} = useToken()
-
     const onChangeLanguage=(value:string)=>{
         setOpen(false)
         setLocale(value)

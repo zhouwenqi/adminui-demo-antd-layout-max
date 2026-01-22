@@ -1,5 +1,5 @@
 import { Container } from "@adminui-dev/antd-layout";
-import {  Button, Flex,  Space, Table, Tag, Grid, theme, Input, Tooltip,App, Popconfirm, Divider} from 'antd';
+import {  Button, Flex,  Space, Table, Tag, Grid, theme, Input, Tooltip,App, Popconfirm } from 'antd';
 import  type { TableColumnsType, TableProps,TableColumnType,PopconfirmProps } from 'antd';
 import type { Order } from "@/pages/typings";
 import { Search,Download,Printer,Trash, PackageCheck,Plus,Check,SquarePen,Binoculars,WalletCards } from "lucide-react";
@@ -61,7 +61,7 @@ export default function(){
     
 
     const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Order> => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+    filterDropdown: ({ selectedKeys, close }) => (
       <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
         <Input
           placeholder={`${intl.formatMessage({id:"global.search"})} ${dataIndex}`}
@@ -108,7 +108,7 @@ export default function(){
             dataIndex: 'sn',
             filterSearch: true,
             sorter:true,
-            render:(value,record,index)=>{
+            render:(value,record)=>{
                 return(
                     <a onClick={()=>{showOrderDetails(record)}}>{value}</a>
                 )
@@ -136,7 +136,7 @@ export default function(){
             dataIndex: 'orderStatus',
             width:"160px",
             filters:filterOrderStatus,
-            render(value, record, index) {
+            render(value) {
                 return(
                     <Tag color={getOrderStatusColor(value)} >{filterOrderStatus.find(item=>item.value == value)?.text}</Tag>
                 )
@@ -159,7 +159,7 @@ export default function(){
             dataIndex: 'paymentStatus',
             width:"180px",
             filters:filterPaymentStatus,
-            render(value, record, index) {
+            render(value) {
                 const tagValue = filterPaymentStatus.find(item=>item.value == value)?.text
                 return(
                     value=="PAID" ? <Tag color={"green"} style={{display:"inline-flex", alignItems:"center",gap:"2px"}} icon={<Check size={14} />} >{tagValue}</Tag> : <Tag>{tagValue}</Tag>
@@ -178,7 +178,7 @@ export default function(){
             dataIndex: 'id',
             width:"160px",
             align:"right",
-            render(value,record,index){
+            render(record){
                 let buttons=[<Tooltip key="details-btn" title={intl.formatMessage({id:"order.drawer.details.title"})}>
                             <Button onClick={()=>{showOrderDetails(record)}} type="text" icon={<Binoculars size={14} />} />
                         </Tooltip>]
@@ -206,6 +206,7 @@ export default function(){
     }
 
     const onConfirmDelete:PopconfirmProps["onConfirm"]=(e)=>{
+        console.log(e)
         message.success(intl.formatMessage({id:"order.confirm.create.success"}))        
     }
 

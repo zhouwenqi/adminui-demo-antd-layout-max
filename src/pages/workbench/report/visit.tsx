@@ -1,9 +1,9 @@
 import { Container} from "@adminui-dev/antd-layout";
 import {  Button, Flex,  Space, Table, Tag, Grid, theme, Input, Tooltip,App } from 'antd';
-import type { TableColumnsType, TableProps,TableColumnType,InputRef } from 'antd';
+import type { TableColumnsType, TableColumnType } from 'antd';
 import type { Visit } from "@/pages/typings";
 import { Search,Download,Printer,ChartPie } from "lucide-react";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useIntl } from "react-intl";
 import { printElement } from "@/utils/printUtil";
 import useVisitChart from "./components";
@@ -96,7 +96,7 @@ export default function(){
     ]
     
     const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Visit> => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+    filterDropdown: ({ selectedKeys, close }) => (
       <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
         <Input
           placeholder={`${intl.formatMessage({id:"global.search"})} ${dataIndex}`}
@@ -160,7 +160,7 @@ export default function(){
             dataIndex: 'device',
             width:"140px",
             filters:filterDeviceOptions,
-            render(value, record, index) {
+            render(value) {
                 return(
                     <Tag>{value}</Tag>
                 )
@@ -172,7 +172,7 @@ export default function(){
             dataIndex: 'os',
             width:"140px",
             filters:filterOsOptions,
-            render(value, record, index) {
+            render(value) {
                 return(
                     <Tag>{value}</Tag>
                 )

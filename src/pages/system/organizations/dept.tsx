@@ -55,7 +55,7 @@ export default function(){
     }
     
     const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<Dept> => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+    filterDropdown: ({ selectedKeys, close }) => (
       <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
         <Input
           placeholder={`${intl.formatMessage({id:"global.search"})} ${dataIndex}`}
@@ -100,7 +100,7 @@ export default function(){
         {
             title: intl.formatMessage({id:"dept.column.name"}),
             dataIndex: 'name',
-            render(value, record, index) {
+            render(value, record) {
                 return(<a onClick={()=>{showDetails(record)}}>{value}</a>)
             },
             ...getColumnSearchProps('name'), 
@@ -111,7 +111,7 @@ export default function(){
             filterSearch: true,
             sorter:true,            
             width:"160px",
-            render:(value,record,index)=>{
+            render:(value)=>{
                 return(
                     <Tag>{value}</Tag>
                 )
@@ -134,7 +134,8 @@ export default function(){
             dataIndex: 'id',
             width:"160px",
             align:"right",
-            render(value,record,index){
+            render(value,record){
+              console.log(value)
                 let buttons=[<Tooltip  key="details-btn" title={intl.formatMessage({id:"global.details"})}>
                             <Button onClick={()=>{showDetails(record)}} type="text" icon={<Binoculars size={14} />} />
                         </Tooltip>,<Tooltip key="edit-btn" title={intl.formatMessage({id:"global.edit"})}>

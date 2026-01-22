@@ -59,7 +59,7 @@ export default function(){
     const data = operationLogMap[intl.locale]
     
     const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<OperationLog> => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+    filterDropdown: ({selectedKeys}) => (
       <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
         <Input
           placeholder={`${intl.formatMessage({id:"global.search"})} ${dataIndex}`}
@@ -105,9 +105,9 @@ export default function(){
             title: 'ID',
             dataIndex: 'avatar',
             width:"60px",
-            render(value, record, index) {
+            render(value, record) {
                 return(
-                    <LazyAvatar key={index} size={"small"} src={value} />
+                    <LazyAvatar key={record.id} size={"small"} src={value} />
                 )
             },
         },  
@@ -135,7 +135,7 @@ export default function(){
             dataIndex: 'action',
             width:"140px",
             filters:filterActionOptions,
-            render(value, record, index) {
+            render(value) {
                 return(
                     <Tag>{value}</Tag>
                 )

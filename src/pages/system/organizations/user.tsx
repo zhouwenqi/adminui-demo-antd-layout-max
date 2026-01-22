@@ -1,4 +1,4 @@
-import { Container, LazyAvatar, LazyImage} from "@adminui-dev/antd-layout";
+import { Container, LazyAvatar } from "@adminui-dev/antd-layout";
 import {  Button, Flex,  Space, Table, Tag, Grid, theme, Input, Tooltip,App} from 'antd';
 import  type { TableColumnsType, TableProps,TableColumnType } from 'antd';
 import type { User } from "@/pages/typings";
@@ -51,7 +51,7 @@ export default function(){
     }
     
     const getColumnSearchProps = (dataIndex: DataIndex): TableColumnType<User> => ({
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+    filterDropdown: ({ selectedKeys, close }) => (
       <div style={{ padding: 8 }} onKeyDown={(e) => e.stopPropagation()}>
         <Input
           placeholder={`${intl.formatMessage({id:"global.search"})} ${dataIndex}`}
@@ -97,7 +97,7 @@ export default function(){
             title: intl.formatMessage({id:"user.column.avatar"}),
             dataIndex: 'avatarUrl',
             filterSearch: true,
-            render:(value,record,index)=>{
+            render:(value,record)=>{
                 return(
                     <a onClick={()=>{showDetails(record)}}><LazyAvatar src={value} alt={record.uid} /></a>
                 )
@@ -108,7 +108,7 @@ export default function(){
             dataIndex: 'uid',
             filterSearch: true,
             sorter:true,
-            render:(value,record,index)=>{
+            render:(value,record)=>{
                 return(
                     <a onClick={()=>{showDetails(record)}}>{value}</a>
                 )
@@ -129,7 +129,7 @@ export default function(){
             title: intl.formatMessage({id:"user.column.roleName"}),
             dataIndex: 'roleName',
             width:"160px",
-            render(value, record, index) {
+            render(value) {
                 return(
                     <Tag>{value}</Tag>
                 )
@@ -140,7 +140,7 @@ export default function(){
             title: intl.formatMessage({id:"user.column.deptName"}),
             dataIndex: 'deptName',
             width:"160px",
-            render(value, record, index) {
+            render(value) {
                 return(
                     <Tag>{value}</Tag>
                 )
@@ -164,7 +164,8 @@ export default function(){
             dataIndex: 'id',
             width:"160px",
             align:"right",
-            render(value,record,index){
+            render(value,record){
+                console.log(value)
                 let buttons=[<Tooltip key="details-btn" title={intl.formatMessage({id:"global.details"})}>
                             <Button type="text" onClick={()=>{showDetails(record)}} icon={<Binoculars size={14} />} />
                         </Tooltip>,<Tooltip key="edit-btn" title={intl.formatMessage({id:"global.edit"})}>
