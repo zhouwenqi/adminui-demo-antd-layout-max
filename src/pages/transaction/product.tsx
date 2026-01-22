@@ -188,9 +188,9 @@ export default function(){
             align:"right",
             render(value){
                 console.log(value)
-                let buttons=[<Tooltip key="details-btn" title={intl.formatMessage({id:"order.drawer.details.title"})}>
+                let buttons=[<Tooltip key="details-btn" title={intl.formatMessage({id:"global.details"})}>
                             <Button type="text" icon={<Binoculars size={14} />} />
-                        </Tooltip>,<Tooltip key="edit-btn" title={intl.formatMessage({id:"order.button.edit"})}>
+                        </Tooltip>,<Tooltip key="edit-btn" title={intl.formatMessage({id:"product.button.edit"})}>
                             <Button type="text" icon={<SquarePen size={14} />} />
                         </Tooltip>]
                 return(

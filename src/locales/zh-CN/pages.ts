@@ -155,4 +155,7 @@ export default {
     "firewall.control.title":"防控机制",
     "firewall.option.control.white":"白名单",
     "firewall.option.control.black":"黑名单",
+    "profile.drawer.details.title":"个人资料",
+    "profile.logout.confirm.title":"登出",
+    "profile.logout.confirm.description":"确认退出系统吗？",
 }

@@ -52,7 +52,7 @@ export default function(){
             avatar:"https://api.dicebear.com/9.x/miniavs/svg?seed=8"
         }
     }
-  
+
     return(
         <>
             <AntdLayout layoutConfig={layoutConfig} menuData={menuData} localeMessages={localeMessages}>

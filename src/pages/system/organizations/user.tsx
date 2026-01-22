@@ -18,12 +18,12 @@ type DataIndex = keyof User
 
 const userData:User[]=[
     {id:1,uid:"Aneka",realName:"Aneka",email:"aneka@gmail.com", deptId:4,deptName:"Development",roleId:2,roleName:"Admin",avatarUrl:"https://api.dicebear.com/9.x/miniavs/svg?seed=1", lastDate:'2022/12/8 23:24',createDate:'2022/12/8 23:24'},
-    {id:1,uid:"Felix",realName:"Felix",email:"felix@gmail.com", deptId:8,deptName:"Testing",roleId:2,roleName:"Admin",avatarUrl:"https://api.dicebear.com/9.x/miniavs/svg?seed=2", lastDate:'2022/12/8 23:24',createDate:'2022/12/8 23:24'},
-    {id:1,uid:"Neutral",realName:"Neutral",email:"reutral@gmail.com", deptId:8,deptName:"Testing",roleId:2,roleName:"Admin",avatarUrl:"https://api.dicebear.com/9.x/miniavs/svg?seed=3", lastDate:'2022/12/8 23:24',createDate:'2022/12/8 23:24'},
-    {id:1,uid:"Adventurer",realName:"Adventurer",email:"Adventurer@gmail.com", deptId:4,deptName:"Development",roleId:2,roleName:"Admin",avatarUrl:"https://api.dicebear.com/9.x/miniavs/svg?seed=4", lastDate:'2022/12/8 23:24',createDate:'2022/12/8 23:24'},
-    {id:1,uid:"Lorelei",realName:"Lorelei",email:"Lorelei@gmail.com", deptId:8,deptName:"Testing",roleId:2,roleName:"Admin",avatarUrl:"https://api.dicebear.com/9.x/miniavs/svg?seed=5", lastDate:'2022/12/8 23:24',createDate:'2022/12/8 23:24'},
-    {id:1,uid:"Miniavs",realName:"Miniavs",email:"Miniavs@gmail.com", deptId:4,deptName:"Development",roleId:2,roleName:"Admin",avatarUrl:"https://api.dicebear.com/9.x/miniavs/svg?seed=6", lastDate:'2022/12/8 23:24',createDate:'2022/12/8 23:24'},
-    {id:1,uid:"Apple",realName:"Apple",email:"apple@gmail.com", deptId:3,deptName:"Marketing",roleId:3,roleName:"Query",avatarUrl:"https://api.dicebear.com/9.x/miniavs/svg?seed=7", lastDate:'2022/12/8 23:24',createDate:'2022/12/8 23:24'}
+    {id:2,uid:"Felix",realName:"Felix",email:"felix@gmail.com", deptId:8,deptName:"Testing",roleId:2,roleName:"Admin",avatarUrl:"https://api.dicebear.com/9.x/miniavs/svg?seed=2", lastDate:'2022/12/8 23:24',createDate:'2022/12/8 23:24'},
+    {id:3,uid:"Neutral",realName:"Neutral",email:"reutral@gmail.com", deptId:8,deptName:"Testing",roleId:2,roleName:"Admin",avatarUrl:"https://api.dicebear.com/9.x/miniavs/svg?seed=3", lastDate:'2022/12/8 23:24',createDate:'2022/12/8 23:24'},
+    {id:4,uid:"Adventurer",realName:"Adventurer",email:"Adventurer@gmail.com", deptId:4,deptName:"Development",roleId:2,roleName:"Admin",avatarUrl:"https://api.dicebear.com/9.x/miniavs/svg?seed=4", lastDate:'2022/12/8 23:24',createDate:'2022/12/8 23:24'},
+    {id:5,uid:"Lorelei",realName:"Lorelei",email:"Lorelei@gmail.com", deptId:8,deptName:"Testing",roleId:2,roleName:"Admin",avatarUrl:"https://api.dicebear.com/9.x/miniavs/svg?seed=5", lastDate:'2022/12/8 23:24',createDate:'2022/12/8 23:24'},
+    {id:6,uid:"Miniavs",realName:"Miniavs",email:"Miniavs@gmail.com", deptId:4,deptName:"Development",roleId:2,roleName:"Admin",avatarUrl:"https://api.dicebear.com/9.x/miniavs/svg?seed=6", lastDate:'2022/12/8 23:24',createDate:'2022/12/8 23:24'},
+    {id:7,uid:"Scapegoat",realName:"Scapegoat",email:"zhouwenqi@me.com", deptId:3,deptName:"Marketing",roleId:3,roleName:"Query",avatarUrl:"https://api.dicebear.com/9.x/miniavs/svg?seed=8", lastDate:'2022/12/8 23:24',createDate:'2022/12/8 23:24'}
 ]
 
 /**

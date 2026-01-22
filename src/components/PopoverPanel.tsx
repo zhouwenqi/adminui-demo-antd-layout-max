@@ -1,7 +1,12 @@
-import { Tag, Button, Divider, Space, theme } from "antd"
+import { Tag, Button, Divider, Space, theme, Popconfirm } from "antd"
+import type {PopconfirmProps} from "antd"
 import { useAvatarPopover,useConfigState,LazyAvatar, LazyImage, useBrandPopover } from "@adminui-dev/antd-layout";
 import {ContactRound,Siren,CircleUserRound,CircleAlert,Crown,LogOut,Plus,Check,BrushCleaning} from "lucide-react";
 import WardenLogo from "./WardenLogo";
+import type { User } from "../pages/typings";
+import { useProfileDrawer } from "@/pages/system/organizations/components";
+import { useIntl } from "react-intl";
+import { useNavigate } from "react-router";
 
 const {useToken} = theme
 
@@ -53,7 +58,10 @@ function UserPopoverPanel(){
     const {token} = useToken()
     const { layoutConfig } = useConfigState()
     const { close } = useAvatarPopover()
+    const navigate = useNavigate()
+    const intl = useIntl()
     const { userInfo } = layoutConfig
+    const {detailsDrawer,showDetails} = useProfileDrawer()
 
     const s1Style:React.CSSProperties = {
         whiteSpace:"nowrap",
@@ -69,11 +77,16 @@ function UserPopoverPanel(){
         overflow:"hidden",
         color:token.colorTextSecondary
     }
-    
+
+    const fetchUserInfo=(uid:string):User | undefined=> {
+        console.log(`find uid is ${uid} for user`)
+        return {id:7,uid:"Scapegoat",realName:"Scapegoat",email:"zhouwenqi@me.com", deptId:3,deptName:"Marketing",roleId:3,roleName:"Query",avatarUrl:"https://api.dicebear.com/9.x/miniavs/svg?seed=8", lastDate:'2022/12/8 23:24',createDate:'2022/12/8 23:24'}
+    }    
 
     if(!userInfo){
         return <></>
     }
+    const user = fetchUserInfo(userInfo.uid)
 
     let faceElement:React.ReactNode = <></>
 
@@ -89,8 +102,19 @@ function UserPopoverPanel(){
         close!()
     }
 
+    const onProfileHandler=()=>{
+        showDetails(user)
+        close!()
+    }
+
+    const confirmHandler: PopconfirmProps['onConfirm'] = (e) => {
+        console.log(e)
+        navigate("/login")
+    }
+
     return(
         <div style={boxStyles}>
+            {detailsDrawer}
             <div style={titleStyles}>
                 {faceElement}
                 <div style={titleText}>
@@ -100,14 +124,16 @@ function UserPopoverPanel(){
             </div>
             <Divider style={{marginTop:"12px",marginBottom:"4px"}} />
             
-            <Button onClick={onClickHandler} type="text" block icon={<ContactRound size={14} />} styles={{root:btnRootStyle}}>Profile</Button>            
+            <Button onClick={onProfileHandler} type="text" block icon={<ContactRound size={14} />} styles={{root:btnRootStyle}}>Profile</Button>            
             <Button onClick={onClickHandler} type="text" block icon={<Siren size={14} />} styles={{root:btnRootStyle}}>Notice</Button>         
             <Button onClick={onClickHandler} type="text" block icon={<CircleUserRound size={14} />} styles={{root:btnRootStyle}}>Account</Button>
             <Button onClick={onClickHandler} type="text" block icon={<BrushCleaning size={14} />} styles={{root:btnRootStyle}}><div style={{display:"flex",width:"100%",justifyContent:"space-between",alignItems:"center"}}>Cache clean<Tag color="warning" icon={<CircleAlert size={14} />}>2.8G</Tag></div></Button>            
             <Divider style={{marginTop:"4px",marginBottom:"4px"}} />
             <Space style={{marginBottom:"0px"}} separator={<Divider orientation="vertical" />}>
                 <Button onClick={onClickHandler} type="text" block icon={<Crown size={14} />} styles={{root:btnRootStyle}}>Upgrade pro</Button>
-                <Button onClick={onClickHandler} type="text" block icon={<LogOut size={14} />} styles={{root:btnRootStyle}}>Logout</Button>
+                <Popconfirm onConfirm={confirmHandler} title={intl.formatMessage({id:"profile.logout.confirm.title"})} description={intl.formatMessage({id:"profile.logout.confirm.description"})}>
+                    <Button type="text" block icon={<LogOut size={14} />} styles={{root:btnRootStyle}}>Logout</Button>
+                </Popconfirm>                
             </Space>                      
         </div>
     )

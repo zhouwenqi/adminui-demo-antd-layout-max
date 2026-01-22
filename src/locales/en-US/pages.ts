@@ -155,4 +155,7 @@ export default {
     "firewall.control.title":"Protection rules",
     "firewall.option.control.white":"Whitelist",
     "firewall.option.control.black":"Blacklist",
+    "profile.drawer.details.title":"Profile details",
+    "profile.logout.confirm.title":"Sign out",
+    "profile.logout.confirm.description":"Are you sure you want to log out of the system?",
 }
