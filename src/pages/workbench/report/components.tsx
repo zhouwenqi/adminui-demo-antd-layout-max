@@ -96,9 +96,12 @@ function VistChartDrawer(props:DrawerProps){
 function SalesReportHeader(){
     const intl = useIntl()
     const {xs} = useBreakpoint()
+    const {token} = useToken()
     const boxStyles:React.CSSProperties = {
         flexWrap:xs ? "wrap" : "inherit",
-        gap:xs ? "0.5rem" : "0px"
+        gap:xs ? "0.5rem" : "0px",
+        border:`solid 1px ${token.colorBorderSecondary}`,
+        backgroundColor:token.colorBgContainer
     }
     const cardStyles:React.CSSProperties = {
         width:xs? "100%" : "auto",
@@ -276,12 +279,9 @@ const deviceChartOption:AppChartOption = {
 
 function SalesOsChart(){
     const intl = useIntl()
-    const {token} = useToken()
-    const {layoutConfig} = useConfigState()
     const appChart:RefObject<any> = useRef(null)
-    const bgColor = layoutConfig.asideBlur || layoutConfig.headerBlur ? hexToRgbaString(token.colorBgContainer,0.6) : token.colorBgContainer
     return(
-        <Card style={{backgroundColor:bgColor}} title={intl.formatMessage({id:"sales.chart.os.title"})} extra={<Tooltip title={intl.formatMessage({id:"global.more"})}><Button type="text" icon={<MoreVertical size={14} />} /></Tooltip>}>
+        <Card title={intl.formatMessage({id:"sales.chart.os.title"})} extra={<Tooltip title={intl.formatMessage({id:"global.more"})}><Button type="text" icon={<MoreVertical size={14} />} /></Tooltip>}>
             <AppChart style={{width:"100%",height:"400px"}} option={osChartOption} ref={appChart} />
         </Card>        
     )
@@ -289,12 +289,9 @@ function SalesOsChart(){
 
 function SalesDeviceChart(){
     const intl = useIntl()
-    const {token} = useToken()
-    const {layoutConfig} = useConfigState()
     const appChart:RefObject<any> = useRef(null)
-    const bgColor = layoutConfig.asideBlur || layoutConfig.headerBlur ? hexToRgbaString(token.colorBgContainer,0.6) : token.colorBgContainer
     return(
-        <Card style={{backgroundColor:bgColor}} title={intl.formatMessage({id:"sales.chart.device.title"})} extra={<Tooltip title={intl.formatMessage({id:"global.more"})}><Button type="text" icon={<MoreVertical size={14} />} /></Tooltip>}>
+        <Card title={intl.formatMessage({id:"sales.chart.device.title"})} extra={<Tooltip title={intl.formatMessage({id:"global.more"})}><Button type="text" icon={<MoreVertical size={14} />} /></Tooltip>}>
             <AppChart style={{width:"100%",height:"400px"}} option={deviceChartOption} ref={appChart} />
         </Card>  
     )

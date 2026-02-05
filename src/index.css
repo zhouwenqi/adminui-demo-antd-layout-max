@@ -13,5 +13,5 @@
 }
 
 #nprogress .peg {
-  box-shadow: 0 0 10px #417ffb, 0 0 5px #417ffb !important;
+  box-shadow: 0 0 10px var(--pageload-bar-color), 0 0 5px var(--pageload-bar-color) !important;
 }

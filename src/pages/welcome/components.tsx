@@ -1,7 +1,7 @@
 import { theme, Tag, Flex, Space,  Grid, Row, Col, Card, Button, Tooltip, Popover, Typography } from "antd"
 import styles from "./index.module.css"
 import type { OperationLog, Project, User } from "@/pages/typings"
-import { hexToRgbaString, LazyAvatar, LazyImage, useConfigState } from "@adminui-dev/antd-layout"
+import { LazyAvatar, LazyImage, useConfigState } from "@adminui-dev/antd-layout"
 import { User2,ArrowUp,ArrowDown,Flag,MoreVertical, Users } from "lucide-react"
 import type { AppChartOption } from "@/components/AppChart"
 import AppChart from "@/components/AppChart"
@@ -46,12 +46,11 @@ interface TotalCardProps extends React.HTMLAttributes<HTMLDivElement>{
  */
 function WelcomeHeaderPanel(){
     const { token } = useToken()
-    const { layoutConfig } = useConfigState()
     const {xs} = useBreakpoint()
     const intl = useIntl()
-    const bgColor = layoutConfig.asideBlur || layoutConfig.headerBlur ? hexToRgbaString(token.colorBgContainer,0.6) : token.colorBgContainer
+
     let headerStyle:React.CSSProperties = {
-        backgroundColor:bgColor,
+        backgroundColor:token.colorBgContainer,
         padding:token.paddingLG
     }
     let itemStyle:React.CSSProperties = {
@@ -136,10 +135,8 @@ function WelcomeHeaderPanel(){
  */
 function TotalCard(props:TotalCardProps){   
     const { token }  = useToken()   
-    const { layoutConfig } = useConfigState()
-    const bgColor = layoutConfig.asideBlur || layoutConfig.headerBlur ? hexToRgbaString(token.colorBgContainer,0.6) : token.colorBgContainer
     const cardStyle:React.CSSProperties = {
-        backgroundColor:bgColor,
+        backgroundColor:token.colorBgContainer,
         margin:token.marginXS,
         whiteSpace:"nowrap"
     }
@@ -356,19 +353,15 @@ const projectMap:Record<string,Project[]>={"en-US": [
 
 function ProjectPanel(){    
     const intl = useIntl()
-    const { token } = useToken()
     const { locale } = useConfigState()
-    const { layoutConfig } = useConfigState()
     let projectData = locale ? projectMap[locale] : projectMap["en-US"]
     let items:React.ReactNode[]=[]
     projectData.forEach((item,index)=>{
         items.push(<ProjectItem project={item} key={index} />)
     })
 
-    const bgColor = layoutConfig.asideBlur || layoutConfig.headerBlur ? hexToRgbaString(token.colorBgContainer,0.6) : token.colorBgContainer   
-
     return(
-        <Card className={styles.projectBox} style={{backgroundColor:bgColor}} title={intl.formatMessage({id:"welcome.project.title"})} extra={<Tooltip title={intl.formatMessage({id:"global.more"})}><Button type="text" icon={<MoreVertical size={14} />} /></Tooltip>} >
+        <Card className={styles.projectBox} title={intl.formatMessage({id:"welcome.project.title"})} extra={<Tooltip title={intl.formatMessage({id:"global.more"})}><Button type="text" icon={<MoreVertical size={14} />} /></Tooltip>} >
             {items}
         </Card>
     )
@@ -480,31 +473,24 @@ const operationLogMap:Record<string,OperationLog[]> = {
  */
 function PaymentChannelPanel(){
     const intl = useIntl()
-    const { token } = useToken()
-    const { layoutConfig } = useConfigState()
-    const bgColor = layoutConfig.asideBlur || layoutConfig.headerBlur ? hexToRgbaString(token.colorBgContainer,0.6) : token.colorBgContainer
-
     return(
-        <Card className={styles.projectBox} style={{backgroundColor:bgColor}} title={intl.formatMessage({id:"welcome.playment.title"})} extra={<Tooltip title={intl.formatMessage({id:"global.more"})}><Button type="text" icon={<MoreVertical size={14} />} /></Tooltip>} >
+        <Card className={styles.projectBox} title={intl.formatMessage({id:"welcome.playment.title"})} extra={<Tooltip title={intl.formatMessage({id:"global.more"})}><Button type="text" icon={<MoreVertical size={14} />} /></Tooltip>} >
             <AppChart option={paymentChartOption} style={{height:"320px"}} />
         </Card>
     )
 }
 
-function LogsPanel(){
-    const { token } = useToken()    
-    const { locale } = useConfigState()
-    const { layoutConfig } = useConfigState()   
+function LogsPanel(){  
+    const { locale } = useConfigState()  
     const {xs} = useBreakpoint() 
     const  intl = useIntl()
     const logsData = locale ? operationLogMap[locale] : operationLogMap["en-US"]
-    const bgColor = layoutConfig.asideBlur || layoutConfig.headerBlur ? hexToRgbaString(token.colorBgContainer,0.6) : token.colorBgContainer 
     let items:React.ReactNode[]=[]
     logsData.forEach((item,index)=>{
         items.push(<LogsItem key={index} log={item} isMobile={xs||false} />)
     })
     return(
-        <Card className={styles.logsCard} style={{backgroundColor:bgColor}} title={intl.formatMessage({id:"welcome.logs.title"})} extra={<Tooltip title={intl.formatMessage({id:"global.more"})}><Button type="text" icon={<MoreVertical size={14} />} /></Tooltip>}>
+        <Card className={styles.logsCard} title={intl.formatMessage({id:"welcome.logs.title"})} extra={<Tooltip title={intl.formatMessage({id:"global.more"})}><Button type="text" icon={<MoreVertical size={14} />} /></Tooltip>}>
             {items}          
         </Card>
     )    
